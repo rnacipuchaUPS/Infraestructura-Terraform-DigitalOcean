@@ -7,8 +7,8 @@ provider "digitalocean" {
 }
 
 # Create a new SSH key
-resource "digitalocean_ssh_key" "web-ssh" {
-    name       = "Terraform Example"
+resource "digitalocean_ssh_key" "key-ssh" {
+    name       = "Terraform sshkey"
     public_key = file(var.ssh_pub_path)
 }
 
@@ -17,7 +17,7 @@ resource "digitalocean_droplet" "web" {
     image = var.droplet_image
     region = "fra1"
     size   = "512mb"
-    ssh_keys = [digitalocean_ssh_key.web-ssh.fingerprint]
+    ssh_keys = [digitalocean_ssh_key.key-ssh.fingerprint]
 }
  
 output "ip" {
