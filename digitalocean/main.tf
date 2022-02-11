@@ -13,6 +13,10 @@ resource "digitalocean_ssh_key" "key-ssh" {
     public_key = file(var.ssh_pub_path)
 }
 
+data "template_file" "userdata" {
+    template = file("${path.module}/userdata.sh")
+}
+
 resource "digitalocean_droplet" "web" {
     name  = "${var.project_name}-web"
     image = "ubuntu-20-04-x64"
