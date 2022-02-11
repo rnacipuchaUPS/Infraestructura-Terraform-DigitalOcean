@@ -20,7 +20,7 @@ resource "digitalocean_droplet" "web" {
     size   = "s-1vcpu-1gb"
     backups = true
     user_data = data.template_file.userdata.rendered
-    ssh_keys = [digitalocean_ssh_key.web-ssh.fingerprint]
+    ssh_keys = [digitalocean_ssh_key.key-ssh.fingerprint]
 
 }
  
